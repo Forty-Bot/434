@@ -4,7 +4,7 @@ NestedEval(p, 2)
 
 % 2.a
 deriv = [2 1 -2 -1];
-order = 5;
+order = 6;
 % NestedEval uses the length of the vector to determine the order of the
 % polynomial, so we can't just pass in a matrix. This incantation will create
 % a cell to hold vectors of coefficients.
@@ -32,10 +32,10 @@ grid("on");
 
 % 2.c
 function err = relerr(real, approx)
-  err = abs(real - approx) ./ abs(real);
+  err = abs((real - approx) ./ real);
 endfunction
 
-x2 = [.1 .7];
+x2 = [.1 .5];
 real_y2 = sin(x2) + 2 * cos(x2);
 y2 = eval_cell(@(a) relerr(real_y2, NestedEval(a, x2)),
                coeff,
